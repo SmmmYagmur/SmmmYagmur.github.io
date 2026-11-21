@@ -103,6 +103,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .edu li{display:grid;gap:2px;padding:12px 0 12px 22px;border-bottom:1px solid var(--line);position:relative}
 .edu li::before{content:"";position:absolute;left:0;top:19px;width:10px;height:10px;border-radius:50%;background:var(--mint);border:2px solid var(--ink)}
 .edu span{font-size:15px;color:var(--soft)}
+.edu i{font-style:normal;font-size:13px;font-weight:600;color:var(--soft);font-variant-numeric:tabular-nums}
 .values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
 .value{padding:20px;border-radius:16px;background:var(--panel);display:grid;gap:8px}
 .value svg{width:28px;height:28px}
@@ -312,8 +313,12 @@ footer{padding:32px max(5vw,16px);border-top:1px solid var(--line)}
       <div class="edu">
         <h3>Eğitim ve mesleki yeterlilik</h3>
         <ul>
-          <li><b>SMMM Staja Giriş Sınavı</b><span>İlk girişimde başarıyla tamamlandı</span></li>
-          <li><b>SMMM Yeterlilik Sınavı</b><span>İlk girişimde başarıyla tamamlandı; Serbest Muhasebeci Mali Müşavir unvanı</span></li>
+          <li><i>Meslek sınavı</i><b>SMMM Staja Giriş Sınavı</b><span>İlk girişimde başarıyla tamamlandı</span></li>
+          <li><i>Meslek sınavı</i><b>SMMM Yeterlilik Sınavı</b><span>İlk girişimde başarıyla tamamlandı; Serbest Muhasebeci Mali Müşavir unvanı</span></li>
+          <li><i>2022–2023</i><b>Yüksek lisans · Kütahya Dumlupınar Üniversitesi</b><span>International Business, Trade and Tax Law</span></li>
+          <li><i>2017–2019</i><b>Lisans · Dokuz Eylül Üniversitesi</b><span>İktisat</span></li>
+          <li><i>2015–2017</i><b>Ön lisans · Ege Üniversitesi</b><span>Muhasebe · Yüksek onur belgesi ile mezuniyet</span></li>
+          <li><i>2015</i><b>Lise · Anadolu Meslek Lisesi</b><span>Muhasebe bölümü</span></li>
         </ul>
       </div>
       <div class="values">
