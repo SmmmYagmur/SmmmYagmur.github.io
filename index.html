@@ -98,6 +98,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .about-side{display:grid;gap:20px}
 .about-text{display:grid;gap:18px;font-size:17px}
 .about-text p{max-width:40em}
+.edu{border-top:2px solid var(--ink);padding-top:16px;display:grid;gap:10px}
+.edu ul{list-style:none;margin:0;padding:0;display:grid}
+.edu li{display:grid;gap:2px;padding:12px 0 12px 22px;border-bottom:1px solid var(--line);position:relative}
+.edu li::before{content:"";position:absolute;left:0;top:19px;width:10px;height:10px;border-radius:50%;background:var(--mint);border:2px solid var(--ink)}
+.edu span{font-size:15px;color:var(--soft)}
 .values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
 .value{padding:20px;border-radius:16px;background:var(--panel);display:grid;gap:8px}
 .value svg{width:28px;height:28px}
@@ -304,6 +309,13 @@ footer{padding:32px max(5vw,16px);border-top:1px solid var(--line)}
     <div class="about-text">
       <p>İzmir'de serbest muhasebeci mali müşavir olarak kendi büromu yürütüyorum. Esnaf, serbest meslek sahibi ve küçük ölçekli şirketlerin muhasebe, vergi ve SGK işlemlerini takip ediyorum.</p>
       <p>Çalışma anlayışım basit: işler zamanında yapılır, belgeler düzenli tutulur, mükellef ne olup bittiğini anlar. Beyanname dönemlerinden önce sizi bilgilendirir, eksik evrakı önceden isterim.</p>
+      <div class="edu">
+        <h3>Eğitim ve mesleki yeterlilik</h3>
+        <ul>
+          <li><b>SMMM Staja Giriş Sınavı</b><span>İlk girişimde başarıyla tamamlandı</span></li>
+          <li><b>SMMM Yeterlilik Sınavı</b><span>Staj sonrası başarıyla tamamlandı; Serbest Muhasebeci Mali Müşavir unvanı</span></li>
+        </ul>
+      </div>
       <div class="values">
         <div class="value">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
