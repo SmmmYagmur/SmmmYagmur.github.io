@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<!--
+  KİŞİSEL WEB SİTESİ: MALİ MÜŞAVİR
+  Düzenlemen gereken yerler (Ctrl+F ile ara):
+  - "Elif Kaya" ve "EK"     → adın soyadın ve baş harflerin
+  - "0 (555) 123 45 67" ve "905551234567" → telefon / WhatsApp numaran
+  - "iletisim@ornek.com"    → e-posta adresin
+  - "Alsancak, Konak / İzmir" → ofis adresin
+  - "instagram.com/" ve "linkedin.com/" → sosyal medya hesapların
+  - Hakkımda metni          → kendi hikâyen
+  YILLIK GÜNCELLEME: "PARAMETRELER" bloğundaki rakamlar (asgari ücret, vergi dilimleri, kıdem tavanı)
+  GÜNLÜK MEVZUAT: "mevzuat-verisi" bloğundaki liste (en yeni en üstte)
+-->
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elif Kaya, Mali Müşavir</title>
+<meta name="description" content="İzmir'de serbest muhasebeci mali müşavir. Defter tutma, beyannameler, şirket kuruluşu, vergi takvimi ve hesaplama araçları.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE  ciddi, güven veren, modern bir meslek sayfası; mükellefin her gün işine yarar
+   IDEA   muhasebe defteri: borç ve alacak her zaman denk
+   PICTURE nane yeşili alan üzerinde kâğıt yevmiye sayfası, toplamlar sayılarak "denk" olur
+   COLOUR siyah-beyaz + nane yeşili #b8f5d0; gece siyah, nane mürekkep
+   TYPE   Space Grotesk 700 + Inter
+   LAYOUT laptop: sol beyaz başlık, sağ nane alanı; telefon: başlık, defter, butonlar */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0b0b0b);--ink:light-dark(#0b0b0b,#f2f2f2);--soft:light-dark(#555,#a9a9a9);--line:light-dark(#e2e2e2,#2a2a2a);--mint:#b8f5d0;--field:light-dark(#b8f5d0,#122019);--paper:light-dark(#ffffff,#171717);--panel:light-dark(#f4f4f4,#141414);--ok:light-dark(#0f7a3f,#7fe3a8);--warn:light-dark(#b3261e,#ff9a8f)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:clip}
+h1,h2,h3,.brand,.big{font-family:"Space Grotesk",Inter,system-ui,sans-serif;letter-spacing:-.02em;line-height:1.05;margin:0}
+h1{font-size:clamp(40px,5.6vw,72px);font-weight:700;text-wrap:balance}
+h2{font-size:clamp(32px,4vw,48px);font-weight:700;text-wrap:balance}
+h3{font-size:20px;font-weight:700;line-height:1.25}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(48px,7vw,104px);padding-inline:max(5vw,16px)}
+.lead{font-size:18px;max-width:34em;color:var(--soft)}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px 48px;margin-bottom:36px}
+.head p{max-width:32em;color:var(--soft)}
+.note{font-size:13px;color:var(--soft)}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* üst menü */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px max(5vw,16px);max-width:1240px;margin:0 auto;position:relative}
+.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;text-decoration:none;flex:none}
+.mono{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--bg);font-size:15px}
+.links{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.links a{display:block;padding:10px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px}
+.links a:hover,.links a.on{background:var(--field)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);cursor:pointer}
+.burger span{display:block;width:18px;height:2px;margin:4px auto;background:currentColor}
+
+/* butonlar ve odak */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);background:transparent;color:var(--ink);font-size:16px;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.dark{background:var(--ink);color:var(--bg)}
+.btn svg{width:18px;height:18px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #19a85a;outline-offset:2px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+/* açılış */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);min-height:min(calc(100svh - 64px),820px)}
+.hero-text{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:clamp(40px,6vw,88px) clamp(16px,4vw,64px) clamp(40px,6vw,88px) max(5vw,16px)}
+.role{font-weight:600;font-size:17px;color:var(--soft)}
+.next{display:flex;align-items:center;gap:14px;padding:14px 18px;border:2px solid var(--ink);border-radius:16px;text-decoration:none;max-width:30em}
+.next .d{font:700 30px/1 "Space Grotesk",sans-serif;text-align:center;min-width:2.2em}
+.next .d small{display:block;font:500 13px Inter,sans-serif;margin-top:4px}
+.next b{display:block}
+.next span{font-size:14px;color:var(--soft)}
+.hero-pic{background:var(--field);display:grid;place-items:center;padding:clamp(32px,5vw,72px) clamp(16px,4vw,56px);position:relative;overflow:hidden}
+.hero-pic::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 39px,color-mix(in srgb,var(--ink) 7%,transparent) 39px 40px)}
+.sheets{position:relative;width:min(100%,440px)}
+.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:6px;padding:22px 22px 18px;box-shadow:10px 10px 0 var(--ink)}
+.sheet.back{position:absolute;inset:0;transform:rotate(-4deg) translate(-14px,10px);box-shadow:none}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.sheet-head .big{font-size:22px}
+.sheet-head small{font-size:13px;color:var(--soft)}
+.ledger{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.ledger th{font-weight:600;text-align:right;font-size:13px;color:var(--soft);padding:8px 0 6px}
+.ledger th:first-child{text-align:left}
+.ledger td{padding:7px 0;border-bottom:1px dashed var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger td:first-child{text-align:left;white-space:normal;padding-right:8px}
+.ledger td+td{padding-left:12px}
+.ledger tfoot td{border-bottom:0;border-top:2px solid var(--ink);font:700 16px "Space Grotesk",sans-serif;padding-top:10px}
+.stamp{position:absolute;right:18px;bottom:-26px;transform:rotate(-8deg) scale(.6);opacity:0;display:flex;align-items:center;gap:8px;padding:8px 16px;border:3px solid var(--ok);color:var(--ok);background:var(--paper);border-radius:10px;font:700 18px "Space Grotesk",sans-serif;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.stamp.on{transform:rotate(-8deg) scale(1);opacity:1}
+
+/* hakkımda */
+.about{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px);align-items:start}
+.about-side{display:grid;gap:20px}
+.about-text{display:grid;gap:18px;font-size:17px}
+.about-text p{max-width:40em}
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:12px}
+.value{padding:20px;border-radius:16px;background:var(--panel);display:grid;gap:8px}
+.value svg{width:28px;height:28px}
+.value p{font-size:15px;color:var(--soft)}
+
+/* hizmetler */
+.dark-band{background:var(--ink);color:var(--bg)}
+.dark-band .head p{color:inherit;opacity:.75}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:color-mix(in srgb,var(--bg) 18%,transparent);border:2px solid color-mix(in srgb,var(--bg) 18%,transparent);border-radius:18px;overflow:hidden}
+.svc{background:var(--ink);padding:28px;display:grid;gap:12px;align-content:start;transition:background .2s,color .2s}
+.svc:hover{background:var(--mint);color:#0b0b0b}
+.svc svg{width:32px;height:32px}
+.svc p{font-size:15px;opacity:.8}
+.svc ul{margin:0;padding-left:18px;font-size:14px;opacity:.8}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px;position:relative}
+.steps::before{content:"";position:absolute;left:24px;right:24px;top:24px;height:2px;background:var(--bg);opacity:.35}
+.step{position:relative;display:grid;gap:10px}
+.dot{width:48px;height:48px;border-radius:50%;background:var(--mint);display:grid;place-items:center;color:#0b0b0b}
+.dot svg{width:22px;height:22px}
+.step p{font-size:15px;opacity:.75}
+
+/* hesaplama */
+.calc{border:2px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:10px 10px 0 var(--ink);background:var(--paper)}
+.tabs{display:flex;flex-wrap:wrap;border-bottom:2px solid var(--ink);background:var(--panel)}
+.tab{flex:1 1 auto;min-height:56px;padding:0 18px;border:0;border-right:2px solid var(--ink);background:transparent;color:var(--ink);font:600 15px Inter,sans-serif;cursor:pointer}
+.tab:last-child{border-right:0}
+.tab[aria-selected=true]{background:var(--mint);color:#0b0b0b}
+.pane{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.pane[hidden]{display:none}
+.inputs{padding:clamp(20px,3vw,32px);display:grid;gap:16px;align-content:start;border-right:2px solid var(--ink)}
+.result{padding:clamp(20px,3vw,32px);display:grid;gap:16px;align-content:start;background:var(--field)}
+.result .big{font-size:clamp(36px,5vw,56px);font-variant-numeric:tabular-nums}
+.result .cap{font-weight:600}
+.rows{display:grid}
+.rows div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed color-mix(in srgb,var(--ink) 25%,transparent);font-size:15px}
+.rows div:last-child{border-bottom:0}
+.rows b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.rows .tot{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
+label{display:grid;gap:6px;font-weight:600;font-size:15px}
+input,textarea,select{font:16px/1.4 Inter,system-ui,sans-serif;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);width:100%}
+input:focus,textarea:focus,select:focus{border-color:var(--ink)}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.seg{display:flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{flex:1;min-height:44px;border:0;background:transparent;color:var(--ink);font:600 14px Inter,sans-serif;cursor:pointer;padding:0 10px}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.check{display:flex;align-items:center;gap:10px;font-weight:500}
+.check input{width:22px;height:22px;flex:none;accent-color:#0b0b0b}
+.warn{color:var(--warn);font-size:14px;font-weight:500}
+
+/* takvim ve pratik bilgiler */
+.two{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,64px);align-items:start}
+.cal{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.cal li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.cal .day{font:700 32px/1 "Space Grotesk",sans-serif;width:2.4ch;text-align:right;font-variant-numeric:tabular-nums}
+.cal .mo{font-size:13px;color:var(--soft);display:block}
+.cal .left{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--panel);white-space:nowrap}
+.cal li.soon .left{background:var(--mint);color:#0b0b0b}
+.cal li.past{opacity:.45}
+.facts-t{width:100%;border-collapse:collapse;font-size:15px}
+.facts-t td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.facts-t td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:12px}
+.facts-t small{display:block;font-size:13px;color:var(--soft);font-weight:400}
+.side-card{border:2px solid var(--ink);border-radius:20px;padding:clamp(20px,3vw,28px);display:grid;gap:14px}
+details.tarife summary{cursor:pointer;font-weight:600;padding:8px 0}
+.scroll{overflow-x:auto}
+
+/* mevzuat */
+.feed{display:grid;gap:16px}
+.post{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;padding:22px;border-radius:18px;background:var(--paper);border:2px solid var(--ink)}
+.post time{display:grid;place-items:center;width:72px;height:72px;border-radius:14px;background:var(--ink);color:var(--bg);font:700 26px/1 "Space Grotesk",sans-serif;text-align:center}
+.post time small{display:block;font:500 12px Inter,sans-serif;margin-top:2px}
+.post .meta{font-size:13px;font-weight:600;color:var(--soft)}
+.post h3{margin:4px 0 8px}
+.post p{font-size:15px;max-width:60em}
+.post a{display:inline-block;margin-top:10px;font-weight:600;font-size:14px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{min-height:40px;padding:0 16px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:600 14px Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.more{margin-top:20px}
+
+/* hızlı erişim */
+.quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+[hidden]{display:none!important}
+.q{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 16px;border:2px solid var(--paper);color:var(--ink);border-radius:14px;text-decoration:none;font-weight:600;background:var(--paper);transition:transform .15s,box-shadow .15s}
+.q:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--mint)}
+.q svg{flex:none;width:22px;height:22px}
+.q small{display:block;font-weight:400;font-size:13px;color:var(--soft)}
+
+/* sss */
+.faq{display:grid;border-top:2px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font:700 19px/1.3 "Space Grotesk",sans-serif}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:26px;line-height:1;flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{padding:0 0 20px;max-width:46em;color:var(--soft)}
+
+/* iletişim */
+.contact{background:var(--field)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:start}
+.cards{display:grid;gap:12px;margin-top:28px}
+.card{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--paper);border:2px solid var(--ink);border-radius:16px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.card svg{flex:none;width:24px;height:24px}
+.card small{display:block;font-size:13px;color:var(--soft)}
+.card span{font-weight:600;overflow-wrap:anywhere}
+a.card:hover{box-shadow:6px 6px 0 var(--ink);transform:translate(-2px,-2px)}
+.socials{display:flex;gap:10px;margin-top:4px}
+.socials a{display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--ink);border-radius:12px;background:var(--paper)}
+.socials svg{width:22px;height:22px}
+form{background:var(--paper);border:2px solid var(--ink);border-radius:20px;padding:clamp(20px,3vw,32px);display:grid;gap:16px;box-shadow:10px 10px 0 var(--ink)}
+textarea{min-height:120px;resize:vertical}
+.err{color:var(--warn);font-size:14px;min-height:1em}
+
+footer{padding:32px max(5vw,16px);border-top:1px solid var(--line)}
+.foot{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px;color:var(--soft)}
+
+@media(max-width:1080px){
+.burger{display:block}
+.links{position:absolute;left:0;right:0;top:100%;flex-direction:column;padding:8px max(5vw,16px) 16px;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+.links.open{display:flex}
+.links a{padding:14px 16px;font-size:17px}
+}
+@media(max-width:900px){
+.hero{grid-template-columns:minmax(0,1fr);min-height:0}
+.hero-pic{padding:48px 24px 64px}
+.about,.contact-grid,.two{grid-template-columns:minmax(0,1fr)}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.steps::before{display:none}
+.quick{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pane{grid-template-columns:minmax(0,1fr)}
+.inputs{border-right:0;border-bottom:2px solid var(--ink)}
+}
+@media(max-width:600px){
+.values,.grid,.steps,.row2,.quick{grid-template-columns:minmax(0,1fr)}
+.btn{flex:1 1 auto;justify-content:center}
+.sheet{padding:18px 16px 14px;box-shadow:6px 6px 0 var(--ink)}
+.calc,form{box-shadow:6px 6px 0 var(--ink)}
+.tab{flex:1 1 45%;border-bottom:2px solid var(--ink);margin-bottom:-2px}
+.post{grid-template-columns:minmax(0,1fr);gap:12px}
+.post time{width:auto;height:auto;padding:8px 12px;display:inline-flex;gap:6px;justify-self:start;font-size:16px}
+.post time small{margin:0;font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Ana menü">
+    <a class="brand" href="#anasayfa"><span class="mono">EK</span>Elif Kaya</a>
+    <button class="burger" id="burger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <ul class="links" id="menu">
+      <li><a href="#hakkimda">Hakkımda</a></li>
+      <li><a href="#hizmetler">Hizmetler</a></li>
+      <li><a href="#hesaplama">Hesaplama</a></li>
+      <li><a href="#takvim">Vergi takvimi</a></li>
+      <li><a href="#mevzuat">Mevzuat</a></li>
+      <li><a href="#sss">SSS</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="anasayfa">
+  <div class="hero-text">
+    <p class="role">Serbest Muhasebeci Mali Müşavir · İzmir</p>
+    <h1>Elif Kaya</h1>
+    <p class="lead">İşletmenizin defterlerini, beyannamelerini ve vergi takvimini düzenli ve zamanında yürütüyorum. Sorularınıza doğrudan benden yanıt alırsınız.</p>
+    <div class="cta">
+      <a class="btn dark" href="#iletisim">İletişime geçin
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="#hesaplama">Hesaplama araçları</a>
+    </div>
+    <a class="next" href="#takvim" id="nextDue"></a>
+  </div>
+
+  <div class="hero-pic" aria-hidden="true">
+    <div class="sheets">
+      <div class="sheet back"></div>
+      <div class="sheet">
+        <div class="sheet-head"><span class="big">Yevmiye</span><small id="sheetMonth"></small></div>
+        <table class="ledger">
+          <thead><tr><th>Hesap</th><th>Borç</th><th>Alacak</th></tr></thead>
+          <tbody id="rows"></tbody>
+          <tfoot><tr><td>Toplam</td><td id="tb">0,00</td><td id="ta">0,00</td></tr></tfoot>
+        </table>
+        <div class="stamp" id="stamp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Denk
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="hakkimda">
+  <div class="wrap about">
+    <div class="about-side">
+      <h2>Hakkımda</h2>
+      <p class="lead">Mükelleflerimle birebir çalışıyorum. Dosyanızı başkasına devretmiyorum; her işi ben takip ediyorum.</p>
+    </div>
+    <div class="about-text">
+      <p>İzmir'de serbest muhasebeci mali müşavir olarak kendi büromu yürütüyorum. Esnaf, serbest meslek sahibi ve küçük ölçekli şirketlerin muhasebe, vergi ve SGK işlemlerini takip ediyorum.</p>
+      <p>Çalışma anlayışım basit: işler zamanında yapılır, belgeler düzenli tutulur, mükellef ne olup bittiğini anlar. Beyanname dönemlerinden önce sizi bilgilendirir, eksik evrakı önceden isterim.</p>
+      <div class="values">
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <h3>Zamanında</h3><p>Vergi takvimi benim takibimde.</p>
+        </div>
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></svg>
+          <h3>Gizlilik</h3><p>Bilgileriniz meslek sırrıdır.</p>
+        </div>
+        <div class="value">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg>
+          <h3>Açık iletişim</h3><p>Sade dille, net yanıtlar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band dark-band" id="hizmetler">
+  <div class="wrap">
+    <div class="head">
+      <h2>Hizmetler</h2>
+      <p>Kuruluştan beyannameye, işletmenizin mali işlerinin tamamı tek elden.</p>
+    </div>
+    <div class="grid" id="svcs"></div>
+    <div class="steps" id="steps"></div>
+  </div>
+</section>
+
+<section class="band" id="hesaplama">
+  <div class="wrap">
+    <div class="head">
+      <h2>Hesaplama araçları</h2>
+      <p>2026 yılı rakamlarıyla. Sonuçlar bilgilendirme amaçlıdır; kesin hesap için bana danışın.</p>
+    </div>
+    <div class="calc">
+      <div class="tabs" role="tablist" aria-label="Hesaplayıcılar">
+        <button class="tab" role="tab" id="t-maas" aria-controls="p-maas" aria-selected="true">Maaş (brüt / net)</button>
+        <button class="tab" role="tab" id="t-kidem" aria-controls="p-kidem" aria-selected="false">Kıdem tazminatı</button>
+        <button class="tab" role="tab" id="t-kdv" aria-controls="p-kdv" aria-selected="false">KDV ve tevkifat</button>
+        <button class="tab" role="tab" id="t-smm" aria-controls="p-smm" aria-selected="false">Serbest meslek makbuzu</button>
+      </div>
+
+      <div class="pane" role="tabpanel" id="p-maas" aria-labelledby="t-maas">
+        <div class="inputs">
+          <div class="seg" role="group" aria-label="Hesap yönü">
+            <button type="button" id="m-dir-b" aria-pressed="true">Brütten nete</button>
+            <button type="button" id="m-dir-n" aria-pressed="false">Netten brüte</button>
+          </div>
+          <label for="m-tutar"><span id="m-lab">Aylık brüt ücret (TL)</span><input id="m-tutar" inputmode="decimal" value="50.000"></label>
+          <label for="m-ay">Hesaplanacak ay<select id="m-ay"></select></label>
+          <label class="check" for="m-tesvik"><input type="checkbox" id="m-tesvik" checked>İşveren 5 puanlık SGK teşvikinden yararlanıyor</label>
+          <p class="note">Ücretin yıl başından beri aynı olduğu varsayılır; kümülatif vergi matrahı buna göre hesaplanır. Asgari ücret istisnası uygulanır.</p>
+        </div>
+        <div class="result" aria-live="polite">
+          <p class="cap" id="m-cap">Net ele geçen</p>
+          <p class="big" id="m-big">–</p>
+          <div class="rows" id="m-rows"></div>
+        </div>
+      </div>
+
+      <div class="pane" role="tabpanel" id="p-kidem" aria-labelledby="t-kidem" hidden>
+        <div class="inputs">
+          <label for="k-ucret">Giydirilmiş brüt aylık ücret (TL)<input id="k-ucret" inputmode="decimal" value="45.000"></label>
+          <div class="row2">
+            <label for="k-gir">İşe giriş<input id="k-gir" type="date" value="2019-03-01"></label>
+            <label for="k-cik">İşten çıkış<input id="k-cik" type="date" value="2026-11-20"></label>
+          </div>
+          <p class="note">Giydirilmiş ücret; brüt ücrete düzenli ödenen yemek, yol, ikramiye gibi yardımların eklenmesiyle bulunur. Tavan: <span class="num" id="k-tavan-t"></span> (1 Temmuz – 31 Aralık 2026).</p>
+        </div>
+        <div class="result" aria-live="polite">
+          <p class="cap">Net kıdem tazminatı</p>
+          <p class="big" id="k-big">–</p>
+          <div class="rows" id="k-rows"></div>
+          <p class="warn" id="k-warn"></p>
+        </div>
+      </div>
+
+      <div class="pane" role="tabpanel" id="p-kdv" aria-labelledby="t-kdv" hidden>
+        <div class="inputs">
+          <div class="seg" role="group" aria-label="Tutar türü">
+            <button type="button" id="v-dir-h" aria-pressed="true">KDV hariç tutar</button>
+            <button type="button" id="v-dir-d" aria-pressed="false">KDV dahil tutar</button>
+          </div>
+          <label for="v-tutar">Tutar (TL)<input id="v-tutar" inputmode="decimal" value="10.000"></label>
+          <div class="row2">
+            <label for="v-oran">KDV oranı<select id="v-oran"><option value="20">%20</option><option value="10">%10</option><option value="1">%1</option></select></label>
+            <label for="v-tev">Tevkifat<select id="v-tev"><option value="0">Yok</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="7">7/10</option><option value="9">9/10</option></select></label>
+          </div>
+        </div>
+        <div class="result" aria-live="polite">
+          <p class="cap" id="v-cap">KDV dahil toplam</p>
+          <p class="big" id="v-big">–</p>
+          <div class="rows" id="v-rows"></div>
+        </div>
+      </div>
+
+      <div class="pane" role="tabpanel" id="p-smm" aria-labelledby="t-smm" hidden>
+        <div class="inputs">
+          <div class="seg" role="group" aria-label="Hesap yönü">
+            <button type="button" id="s-dir-b" aria-pressed="true">Brüt ücretten</button>
+            <button type="button" id="s-dir-n" aria-pressed="false">Net ücretten</button>
+          </div>
+          <label for="s-tutar"><span id="s-lab">Brüt ücret (TL)</span><input id="s-tutar" inputmode="decimal" value="20.000"></label>
+          <label class="check" for="s-stopaj"><input type="checkbox" id="s-stopaj" checked>Karşı taraf %20 stopaj kesiyor (işletme, şirket)</label>
+          <label class="check" for="s-kdv"><input type="checkbox" id="s-kdv" checked>KDV hesaplansın (%20)</label>
+        </div>
+        <div class="result" aria-live="polite">
+          <p class="cap">Tahsil edilecek tutar</p>
+          <p class="big" id="s-big">–</p>
+          <div class="rows" id="s-rows"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="takvim" style="background:var(--panel)">
+  <div class="wrap two">
+    <div>
+      <div class="head" style="margin-bottom:24px">
+        <h2>Vergi takvimi</h2>
+        <p>Bu ay ve gelecek ay için son günler. Hafta sonuna denk gelen tarihler ilk iş gününe kaydırılır.</p>
+      </div>
+      <ul class="cal" id="cal"></ul>
+      <p class="note" style="margin-top:14px">Resmî tatiller ve süre uzatmaları için <a href="https://www.gib.gov.tr" target="_blank" rel="noopener">GİB</a> duyurularını kontrol edin.</p>
+    </div>
+    <aside class="side-card" aria-labelledby="pb">
+      <h3 id="pb" style="font-size:24px">Pratik bilgiler 2026</h3>
+      <table class="facts-t"><tbody id="facts"></tbody></table>
+      <details class="tarife">
+        <summary>Ücret gelirleri vergi tarifesi</summary>
+        <div class="scroll"><table class="facts-t"><tbody id="tarife"></tbody></table></div>
+      </details>
+    </aside>
+  </div>
+</section>
+
+<section class="band" id="mevzuat">
+  <div class="wrap">
+    <div class="head">
+      <h2>Güncel mevzuat</h2>
+      <p>Mükellefleri ilgilendiren tebliğ, sirküler ve duyuruların kısa özetleri. Ayrıntı için resmî metne bakınız.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="feed" id="feed"></div>
+    <button class="btn more" id="moreBtn" type="button" hidden>Daha fazla göster</button>
+  </div>
+</section>
+
+<section class="band dark-band" id="hizli">
+  <div class="wrap">
+    <div class="head"><h2>Hızlı erişim</h2><p>Sık kullanılan resmî sistemler.</p></div>
+    <div class="quick" id="quick"></div>
+  </div>
+</section>
+
+<section class="band" id="sss">
+  <div class="wrap two">
+    <div class="about-side">
+      <h2>Sık sorulan sorular</h2>
+      <p class="lead">Aklınıza takılan başka bir şey varsa yazmanız yeterli.</p>
+    </div>
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<section class="band contact" id="iletisim">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>İletişim</h2>
+      <p class="lead" style="margin-top:16px;color:inherit">Ön görüşme için arayabilir, WhatsApp'tan yazabilir ya da formu doldurabilirsiniz.</p>
+      <div class="cards">
+        <a class="card" href="tel:+905551234567">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          <div><small>Telefon</small><span>0 (555) 123 45 67</span></div></a>
+        <a class="card" href="https://wa.me/905551234567" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c.3 2 2 3.8 4 4.5l1-1.2 2 .8"/></svg>
+          <div><small>WhatsApp</small><span>Mesaj gönderin</span></div></a>
+        <a class="card" href="mailto:iletisim@ornek.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><small>E-posta</small><span>iletisim@ornek.com</span></div></a>
+        <a class="card" href="https://www.google.com/maps/search/?api=1&amp;query=Alsancak%2C%20Konak%2C%20%C4%B0zmir" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <div><small>Ofis · Haritada aç</small><span>Alsancak, Konak / İzmir</span></div></a>
+        <div class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><small>Çalışma saatleri</small><span>Hafta içi 09:00–18:00</span></div></div>
+      </div>
+      <div class="socials" style="margin-top:16px">
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></a>
+      </div>
+    </div>
+
+    <form id="form" novalidate>
+      <h3 style="font-size:24px">Mesaj bırakın</h3>
+      <div class="row2">
+        <label for="ad">Ad soyad<input id="ad" name="ad" autocomplete="name"></label>
+        <label for="tel">Telefon<input id="tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></label>
+      </div>
+      <label for="konu">Konu
+        <select id="konu" name="konu">
+          <option>Muhasebe ve defter tutma</option>
+          <option>Şirket kuruluşu</option>
+          <option>Beyanname / vergi</option>
+          <option>SGK ve bordro</option>
+          <option>Diğer</option>
+        </select>
+      </label>
+      <label for="mesaj">Mesajınız<textarea id="mesaj" name="mesaj" placeholder="Kısaca işletmenizden ve ihtiyacınızdan bahsedin."></textarea></label>
+      <p class="err" id="err" role="alert"></p>
+      <div class="cta">
+        <a class="btn dark" id="sendWa" href="https://wa.me/905551234567" target="_blank" rel="noopener">WhatsApp ile gönder</a>
+        <a class="btn" id="sendMail" href="mailto:iletisim@ornek.com">E-posta ile gönder</a>
+      </div>
+      <p class="note">Mesajınız WhatsApp ya da e-posta uygulamanızda hazır açılır; göndermeden önce kontrol edebilirsiniz.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <span>© <span id="yil">2026</span> Elif Kaya · Serbest Muhasebeci Mali Müşavir</span>
+    <span>Örnek içerik: isim ve iletişim bilgileri değiştirilmelidir.</span>
+  </div>
+</footer>
+
+<!-- GÜNLÜK MEVZUAT: yeni duyuruyu listenin EN ÜSTÜNE ekleyin. tur: Tebliğ | Sirküler | Genelge | Duyuru | Kanun -->
+<script type="application/json" id="mevzuat-verisi">
+[
+  {
+    "tarih": "2026-11-10",
+    "tur": "Tebliğ",
+    "kurum": "Hazine ve Maliye Bakanlığı · GİB",
+    "baslik": "Vergi borcu bulunanların açıklanması: VUK Genel Tebliği (Sıra No: 597)",
+    "ozet": "Her bir vergi dairesine 5 milyon TL ve üzeri vadesi geçmiş borcu ya da kesinleşmiş vergi ve cezası bulunan mükelleflerin listesi açıklanacak. Listeler 1–15 Aralık 2026'da vergi dairelerinde, 16–30 Aralık 2026'da GİB internet sitesinde yayımlanacak.",
+    "link": "https://www.resmigazete.gov.tr/eskiler/2026/11/20261110.htm"
+  },
+  {
+    "tarih": "2026-07-01",
+    "tur": "Genelge",
+    "kurum": "Hazine ve Maliye Bakanlığı",
+    "baslik": "Kıdem tazminatı tavanı 73.729,87 TL oldu",
+    "ozet": "1 Temmuz – 31 Aralık 2026 döneminde sona eren iş sözleşmelerinde, her tam hizmet yılı için ödenecek kıdem tazminatının üst sınırı 73.729,87 TL'dir.",
+    "link": "https://www.hmb.gov.tr"
+  },
+  {
+    "tarih": "2025-12-31",
+    "tur": "Tebliğ",
+    "kurum": "Hazine ve Maliye Bakanlığı · GİB",
+    "baslik": "2026 gelir vergisi tarifesi: GVK Genel Tebliği (Seri No: 332)",
+    "ozet": "Dilimler %25,49 yeniden değerleme oranıyla güncellendi. İlk dilim 190.000 TL; ücret gelirlerinde %27'lik dilim 1.500.000 TL'ye kadar uygulanıyor. Fatura düzenleme ve doğrudan gider yazılabilecek demirbaş sınırı da 12.000 TL oldu.",
+    "link": "https://www.resmigazete.gov.tr/eskiler/2025/12/20251231M5.htm"
+  }
+]
+</script>
+
+<script>
+{
+  /* ===== PARAMETRELER (2026) — her yıl / dönem güncelleyin ===== */
+  const P = {
+    yil: 2026,
+    asgariBrut: 33030,
+    sgkTavan: 297270,
+    kidemTavan: 73729.87,
+    damga: 0.00759,
+    sgkIsci: 0.14, issizIsci: 0.01,
+    sgkIsveren: 0.2175, tesvik: 0.05, issizIsveren: 0.02,
+    faturaSiniri: 12000,
+    ydo: 25.49,
+    tarife: [[190000, .15], [400000, .20], [1500000, .27], [5300000, .35], [Infinity, .40]]
+  };
+
+  const $ = id => document.getElementById(id);
+  const fmt = n => n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const tl = n => fmt(n) + ' TL';
+  const parse = s => { const v = parseFloat(String(s).replace(/\s|TL/g, '').replace(/\./g, '').replace(',', '.')); return isFinite(v) && v > 0 ? v : 0; };
+  const rowsHtml = list => list.map(([k, v, c]) => `<div${c ? ' class="' + c + '"' : ''}><span>${k}</span><b>${v}</b></div>`).join('');
+  const AYLAR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+
+  /* ikonlar */
+  const ic = {
+    book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h7"/>',
+    doc:'<path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+    build:'<path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/>',
+    people:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>',
+    chart:'<path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/>',
+    chat:'<path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/>',
+    call:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+    folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+    check:'<path d="M4 12l5 5L20 6"/>',
+    cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    ext:'<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'
+  };
+  const svg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ic[k]}</svg>`;
+
+  /* ===== hizmetler ve süreç ===== */
+  const services = [
+    ['book','Muhasebe ve defter tutma','Bilanço ve işletme esasına göre defterlerin tutulması.',['e-Defter, e-Fatura, e-Arşiv','Aylık mizan ve raporlar']],
+    ['doc','Beyannameler','Vergi beyannamelerinin hazırlanması ve zamanında verilmesi.',['KDV, muhtasar, geçici vergi','Yıllık gelir ve kurumlar vergisi']],
+    ['build','Şirket kuruluşu','Şahıs, limited ve anonim şirket kuruluş işlemleri.',['Vergi dairesi açılış işlemleri','Tür değişikliği ve tasfiye']],
+    ['people','SGK ve bordro','Personel giriş-çıkışları ve aylık bordro işlemleri.',['İşe giriş / işten çıkış bildirgeleri','Teşvik takibi']],
+    ['chart','Mali tablolar','Bilanço ve gelir tablosunun hazırlanması, yorumlanması.',['Dönem sonu işlemleri','Banka ve kredi dosyaları']],
+    ['chat','Vergi danışmanlığı','Mevzuata uygun planlama ve güncel değişiklikler hakkında bilgilendirme.',['Vergi incelemesine hazırlık','Yeni düzenlemelerin takibi']]
+  ];
+  $('svcs').innerHTML = services.map(([i,t,d,l]) =>
+    `<article class="svc">${svg(i)}<h3>${t}</h3><p>${d}</p><ul>${l.map(x=>`<li>${x}</li>`).join('')}</ul></article>`).join('');
+  const steps = [
+    ['call','Ön görüşme','İşletmenizi ve ihtiyacınızı dinlerim.'],
+    ['folder','Evrak teslimi','Gerekli belgeleri birlikte belirleriz.'],
+    ['cal','Düzenli takip','Aylık işlemler ve vergi takvimi yürütülür.'],
+    ['check','Raporlama','Dönem sonlarında durumunuzu açıkça paylaşırım.']
+  ];
+  $('steps').innerHTML = steps.map(([i,t,d]) => `<div class="step"><div class="dot">${svg(i)}</div><h3>${t}</h3><p>${d}</p></div>`).join('');
+
+  /* ===== defter animasyonu ===== */
+  const led = [['100 Kasa',18500,0],['102 Bankalar',42300,0],['153 Ticari mallar',27200,0],['320 Satıcılar',0,31000],['600 Yurt içi satışlar',0,57000]];
+  $('sheetMonth').textContent = AYLAR[today.getMonth()] + ' ' + today.getFullYear();
+  $('rows').innerHTML = led.map(([h,b,a]) => `<tr><td>${h}</td><td>${b?fmt(b):''}</td><td>${a?fmt(a):''}</td></tr>`).join('');
+  const sumB = led.reduce((s,r)=>s+r[1],0), sumA = led.reduce((s,r)=>s+r[2],0);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { $('tb').textContent = fmt(sumB); $('ta').textContent = fmt(sumA); $('stamp').classList.add('on'); }
+  else {
+    const t0 = performance.now();
+    const tick = now => { const p = Math.min(1,(now-t0)/1600), e = 1-(1-p)**3;
+      $('tb').textContent = fmt(Math.round(sumB*e)); $('ta').textContent = fmt(Math.round(sumA*e));
+      if (p < 1) requestAnimationFrame(tick); else $('stamp').classList.add('on'); };
+    requestAnimationFrame(tick);
+  }
+
+  /* ===== vergi hesapları ===== */
+  const gv = m => { let t = 0, prev = 0; for (const [lim, r] of P.tarife) { if (m > prev) t += (Math.min(m, lim) - prev) * r; prev = lim; } return t; };
+  const asgariMatrah = P.asgariBrut * (1 - P.sgkIsci - P.issizIsci);
+
+  function bordro(brut, ay, tesvik) {
+    const pmrah = Math.min(brut, P.sgkTavan);
+    const sgk = pmrah * P.sgkIsci, issiz = pmrah * P.issizIsci;
+    const matrah = brut - sgk - issiz;
+    const onceki = matrah * (ay - 1);
+    const gvHam = gv(onceki + matrah) - gv(onceki);
+    const istisna = gv(asgariMatrah * ay) - gv(asgariMatrah * (ay - 1));
+    const gelirV = Math.max(0, gvHam - istisna);
+    const damga = Math.max(0, brut - P.asgariBrut) * P.damga;
+    const net = brut - sgk - issiz - gelirV - damga;
+    const isvSgk = pmrah * (P.sgkIsveren - (tesvik ? P.tesvik : 0)), isvIssiz = pmrah * P.issizIsveren;
+    return { brut, sgk, issiz, matrah, kum: onceki + matrah, gelirV, istisna: Math.min(istisna, gvHam), damga, net, isvSgk, isvIssiz, maliyet: brut + isvSgk + isvIssiz };
+  }
+  function nettenBrut(net, ay, tesvik) {
+    let lo = net, hi = net * 3;
+    for (let i = 0; i < 80; i++) { const mid = (lo + hi) / 2; if (bordro(mid, ay, tesvik).net < net) lo = mid; else hi = mid; }
+    return bordro(hi, ay, tesvik);
+  }
+
+  /* sekmeler */
+  const tabs = [...document.querySelectorAll('.tab')];
+  const showTab = t => { tabs.forEach(b => { const on = b === t; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; $(b.getAttribute('aria-controls')).hidden = !on; }); };
+  tabs.forEach((b, i) => {
+    b.addEventListener('click', () => showTab(b));
+    b.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; showTab(n); n.focus(); } });
+  });
+  showTab(tabs[0]);
+
+  /* iki seçenekli düğmeler */
+  const seg = (a, b, cb) => { const set = x => { $(a).setAttribute('aria-pressed', x === a); $(b).setAttribute('aria-pressed', x === b); cb(x === a); }; $(a).onclick = () => set(a); $(b).onclick = () => set(b); return set; };
+
+  /* maaş */
+  $('m-ay').innerHTML = AYLAR.map((m, i) => `<option value="${i + 1}"${i === today.getMonth() ? ' selected' : ''}>${m}</option>`).join('');
+  let mBrut = true;
+  const maas = () => {
+    const v = parse($('m-tutar').value), ay = +$('m-ay').value, tes = $('m-tesvik').checked;
+    if (!v) { $('m-big').textContent = '–'; $('m-rows').innerHTML = ''; return; }
+    const r = mBrut ? bordro(v, ay, tes) : nettenBrut(v, ay, tes);
+    $('m-cap').textContent = mBrut ? 'Net ele geçen' : 'Gereken brüt ücret';
+    $('m-big').textContent = tl(mBrut ? r.net : r.brut);
+    $('m-rows').innerHTML = rowsHtml([
+      ['Brüt ücret', tl(r.brut)],
+      ['SGK işçi payı (%14)', '− ' + tl(r.sgk)],
+      ['İşsizlik sigortası işçi payı (%1)', '− ' + tl(r.issiz)],
+      ['Gelir vergisi (istisna sonrası)', '− ' + tl(r.gelirV)],
+      ['Damga vergisi', '− ' + tl(r.damga)],
+      ['Net ücret', tl(r.net), 'tot'],
+      ['Kümülatif vergi matrahı', tl(r.kum)],
+      ['İşverene toplam maliyet', tl(r.maliyet)]
+    ]);
+  };
+  seg('m-dir-b', 'm-dir-n', b => { mBrut = b; $('m-lab').textContent = b ? 'Aylık brüt ücret (TL)' : 'Aylık net ücret (TL)'; maas(); });
+  ['m-tutar', 'm-ay', 'm-tesvik'].forEach(id => $(id).addEventListener('input', maas));
+
+  /* kıdem */
+  $('k-tavan-t').textContent = tl(P.kidemTavan);
+  const kidem = () => {
+    const u = parse($('k-ucret').value), g = new Date($('k-gir').value), c = new Date($('k-cik').value);
+    const gun = Math.round((c - g) / 864e5);
+    $('k-warn').textContent = '';
+    if (!u || !isFinite(gun) || gun <= 0) { $('k-big').textContent = '–'; $('k-rows').innerHTML = ''; return; }
+    const esas = Math.min(u, P.kidemTavan), brut = esas * gun / 365, damga = brut * P.damga;
+    const yil = Math.floor(gun / 365), ay = Math.floor((gun % 365) / 30), kg = (gun % 365) % 30;
+    $('k-big').textContent = tl(brut - damga);
+    $('k-rows').innerHTML = rowsHtml([
+      ['Çalışma süresi', `${yil} yıl ${ay} ay ${kg} gün`],
+      ['Hesaba esas ücret', tl(esas)],
+      ['Brüt kıdem tazminatı', tl(brut)],
+      ['Damga vergisi (binde 7,59)', '− ' + tl(damga)],
+      ['Net kıdem tazminatı', tl(brut - damga), 'tot']
+    ]);
+    const w = [];
+    if (u > P.kidemTavan) w.push('Ücret tavanı aştığı için tavan tutar esas alındı.');
+    if (gun < 365) w.push('Bir yılı doldurmayan çalışmada kıdem tazminatı hakkı doğmaz.');
+    $('k-warn').textContent = w.join(' ');
+  };
+  ['k-ucret', 'k-gir', 'k-cik'].forEach(id => $(id).addEventListener('input', kidem));
+
+  /* KDV */
+  let vHaric = true;
+  const kdv = () => {
+    const v = parse($('v-tutar').value), o = +$('v-oran').value / 100, t = +$('v-tev').value / 10;
+    if (!v) { $('v-big').textContent = '–'; $('v-rows').innerHTML = ''; return; }
+    const mat = vHaric ? v : v / (1 + o), k = mat * o, top = mat + k, tev = k * t;
+    $('v-cap').textContent = vHaric ? 'KDV dahil toplam' : 'KDV hariç tutar';
+    $('v-big').textContent = tl(vHaric ? top : mat);
+    const list = [['KDV matrahı', tl(mat)], [`KDV (%${o * 100})`, tl(k)], ['KDV dahil toplam', tl(top), 'tot']];
+    if (t) list.push([`Alıcının tevkif ettiği KDV (${t * 10}/10)`, tl(tev)], ['Satıcıya ödenecek KDV', tl(k - tev)], ['Satıcıya ödenecek toplam', tl(mat + k - tev), 'tot']);
+    $('v-rows').innerHTML = rowsHtml(list);
+  };
+  seg('v-dir-h', 'v-dir-d', h => { vHaric = h; kdv(); });
+  ['v-tutar', 'v-oran', 'v-tev'].forEach(id => $(id).addEventListener('input', kdv));
+
+  /* serbest meslek makbuzu */
+  let sBrut = true;
+  const smm = () => {
+    const v = parse($('s-tutar').value), st = $('s-stopaj').checked ? .20 : 0, kd = $('s-kdv').checked ? .20 : 0;
+    if (!v) { $('s-big').textContent = '–'; $('s-rows').innerHTML = ''; return; }
+    const brut = sBrut ? v : v / (1 - st), stop = brut * st, net = brut - stop, k = brut * kd;
+    $('s-big').textContent = tl(net + k);
+    $('s-rows').innerHTML = rowsHtml([
+      ['Brüt ücret', tl(brut)],
+      ['Gelir vergisi stopajı (%20)', '− ' + tl(stop)],
+      ['Net ücret', tl(net), 'tot'],
+      ['KDV (%20)', '+ ' + tl(k)],
+      ['Tahsil edilecek toplam', tl(net + k), 'tot']
+    ]);
+  };
+  seg('s-dir-b', 's-dir-n', b => { sBrut = b; $('s-lab').textContent = b ? 'Brüt ücret (TL)' : 'Net ücret (TL)'; smm(); });
+  ['s-tutar', 's-stopaj', 's-kdv'].forEach(id => $(id).addEventListener('input', smm));
+
+  maas(); kidem(); kdv(); smm();
+
+  /* ===== vergi takvimi (kurala göre) ===== */
+  const isGunu = d => { const x = new Date(d); while (x.getDay() === 0 || x.getDay() === 6) x.setDate(x.getDate() + 1); return x; };
+  const sonGun = (y, m) => new Date(y, m + 1, 0);
+  const ayKurallari = (y, m) => {
+    const onceki = AYLAR[(m + 11) % 12];
+    const list = [
+      [new Date(y, m, 26), `Muhtasar ve prim hizmet beyannamesi`, `${onceki} dönemi · beyan ve ödeme`],
+      [new Date(y, m, 26), `Damga vergisi beyannamesi`, `${onceki} dönemi · beyannameli mükellefler`],
+      [new Date(y, m, 28), `KDV beyannamesi`, `${onceki} dönemi · beyan ve ödeme`],
+      [sonGun(y, m), `SGK prim ödemesi`, `${onceki} dönemi primleri`],
+      [sonGun(y, m), `Ba-Bs formları`, `${onceki} dönemi bildirimleri`]
+    ];
+    const ceyrek = { 4: 'Ocak–Mart', 7: 'Nisan–Haziran', 10: 'Temmuz–Eylül' }[m];
+    if (ceyrek) list.push([new Date(y, m, 17), 'Geçici vergi beyannamesi', `${ceyrek} dönemi · beyan ve ödeme`]);
+    if (m === 2) list.push([new Date(y, 2, 31), 'Yıllık gelir vergisi beyannamesi', `${y - 1} yılı kazançları`]);
+    if (m === 3) list.push([new Date(y, 3, 30), 'Kurumlar vergisi beyannamesi', `${y - 1} hesap dönemi`]);
+    if (m === 0 || m === 6) list.push([sonGun(y, m), 'Motorlu taşıtlar vergisi', `${y} yılı ${m === 0 ? '1.' : '2.'} taksit`]);
+    return list.map(([d, t, s]) => ({ d: isGunu(d), t, s }));
+  };
+  const y0 = today.getFullYear(), m0 = today.getMonth();
+  const takvim = [...ayKurallari(y0, m0), ...ayKurallari(m0 === 11 ? y0 + 1 : y0, (m0 + 1) % 12)].sort((a, b) => a.d - b.d);
+  const kalan = d => { const n = Math.round((d - today) / 864e5); return n < 0 ? 'Geçti' : n === 0 ? 'Bugün' : n === 1 ? 'Yarın' : n + ' gün kaldı'; };
+  $('cal').innerHTML = takvim.map(x => {
+    const n = Math.round((x.d - today) / 864e5), cls = n < 0 ? 'past' : n <= 7 ? 'soon' : '';
+    return `<li class="${cls}"><span class="day">${x.d.getDate()}<span class="mo">${AYLAR[x.d.getMonth()].slice(0, 3)}</span></span><span><b>${x.t}</b><br><span class="note">${x.s}</span></span><span class="left">${kalan(x.d)}</span></li>`;
+  }).join('');
+  const sonraki = takvim.find(x => x.d >= today);
+  if (sonraki) $('nextDue').innerHTML = `<span class="d">${sonraki.d.getDate()}<small>${AYLAR[sonraki.d.getMonth()]}</small></span><span><b>Sıradaki son gün: ${sonraki.t}</b><span>${sonraki.s} · ${kalan(sonraki.d).toLowerCase()}</span></span>`;
+  else $('nextDue').hidden = true;
+
+  /* pratik bilgiler */
+  const facts = [
+    ['Brüt asgari ücret', 'Aylık', tl(P.asgariBrut)],
+    ['Net asgari ücret', 'Aylık', tl(P.asgariBrut - P.asgariBrut * (P.sgkIsci + P.issizIsci))],
+    ['SGK prime esas kazanç üst sınırı', 'Aylık', tl(P.sgkTavan)],
+    ['Kıdem tazminatı tavanı', '1 Temmuz – 31 Aralık 2026', tl(P.kidemTavan)],
+    ['Fatura düzenleme sınırı', 'Demirbaş gider yazma sınırı da aynı', tl(P.faturaSiniri)],
+    ['Yeniden değerleme oranı', '2026 tutarlarına uygulanan', '%' + P.ydo.toLocaleString('tr-TR')],
+    ['Damga vergisi (ücret)', 'Asgari ücreti aşan kısım', 'Binde 7,59']
+  ];
+  $('facts').innerHTML = facts.map(([a, b, c]) => `<tr><td>${a}<small>${b}</small></td><td>${c}</td></tr>`).join('');
+  let alt = 0;
+  $('tarife').innerHTML = P.tarife.map(([lim, r]) => { const s = `<tr><td>${lim === Infinity ? fmt(alt).replace(',00', '') + ' TL üzeri' : fmt(alt).replace(',00', '') + ' – ' + fmt(lim).replace(',00', '') + ' TL'}</td><td>%${r * 100}</td></tr>`; alt = lim; return s; }).join('');
+
+  /* ===== güncel mevzuat ===== */
+  let mevzuat = [];
+  try { mevzuat = JSON.parse($('mevzuat-verisi').textContent); } catch (e) { mevzuat = []; }
+  mevzuat.sort((a, b) => b.tarih.localeCompare(a.tarih));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const turler = ['Tümü', ...new Set(mevzuat.map(x => x.tur))];
+  let secili = 'Tümü', limit = 5;
+  const feed = () => {
+    const list = mevzuat.filter(x => secili === 'Tümü' || x.tur === secili);
+    $('feed').innerHTML = list.length ? list.slice(0, limit).map(x => {
+      const d = new Date(x.tarih + 'T00:00:00');
+      return `<article class="post"><time datetime="${esc(x.tarih)}">${d.getDate()}<small>${AYLAR[d.getMonth()].slice(0, 3)} ${d.getFullYear()}</small></time><div><p class="meta">${esc(x.tur)} · ${esc(x.kurum)}</p><h3>${esc(x.baslik)}</h3><p>${esc(x.ozet)}</p>${x.link ? `<a href="${esc(x.link)}" target="_blank" rel="noopener">Resmî metin →</a>` : ''}</div></article>`;
+    }).join('') : '<p class="note">Bu başlıkta henüz duyuru yok.</p>';
+    $('moreBtn').hidden = list.length <= limit;
+  };
+  $('filters').innerHTML = turler.map(t => `<button type="button" class="chip" aria-pressed="${t === secili}">${t}</button>`).join('');
+  $('filters').addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; secili = b.textContent; limit = 5; [...$('filters').children].forEach(c => c.setAttribute('aria-pressed', c === b)); feed(); });
+  $('moreBtn').addEventListener('click', () => { limit += 5; feed(); });
+  feed();
+
+  /* ===== hızlı erişim ===== */
+  const quick = [
+    ['İnternet Vergi Dairesi', 'GİB dijital', 'https://dijital.gib.gov.tr'],
+    ['e-Beyanname', 'GİB', 'https://ebeyanname.gib.gov.tr'],
+    ['e-Bildirge', 'SGK', 'https://ebildirge.sgk.gov.tr'],
+    ['Resmî Gazete', 'Günlük yayın', 'https://www.resmigazete.gov.tr'],
+    ['e-Devlet', 'turkiye.gov.tr', 'https://www.turkiye.gov.tr'],
+    ['Gelir İdaresi', 'Mevzuat ve duyurular', 'https://www.gib.gov.tr'],
+    ['MERSİS', 'Ticaret Bakanlığı', 'https://mersis.ticaret.gov.tr'],
+    ['TÜRMOB', 'Meslek birliği', 'https://www.turmob.org.tr']
+  ];
+  $('quick').innerHTML = quick.map(([a, b, u]) => `<a class="q" href="${u}" target="_blank" rel="noopener">${svg('ext')}<span>${a}<small>${b}</small></span></a>`).join('');
+
+  /* ===== SSS ===== */
+  const faq = [
+    ['Şahıs şirketi mi, limited şirket mi kurmalıyım?', 'Beklenen kazancınız, ortak sayınız, sorumluluk ve maliyet tercihleriniz belirleyicidir. Şahıs işletmesi daha az maliyetlidir; kazanç arttıkça kurumlar vergisi avantajlı hâle gelebilir. Ön görüşmede rakamlarınızla birlikte karşılaştırırız.'],
+    ['Her ay hangi belgeleri teslim etmeliyim?', 'Alış ve satış faturaları, gider belgeleri, banka hesap hareketleri, kredi kartı ekstreleri ve varsa personel bilgileri (işe giriş, izin, çıkış). Belgeleri her ayın ilk haftası içinde iletmeniz, beyannamelerin rahatça hazırlanmasını sağlar.'],
+    ['Belgeleri nasıl iletebilirim?', 'WhatsApp, e-posta, ortak klasör ya da elden teslim; hangisi size kolaysa. Önemli olan belgelerin eksiksiz ve zamanında gelmesidir.'],
+    ['Beyannamelerim ne zaman verilir?', 'KDV beyannamesi her ayın 28\'ine, muhtasar ve prim hizmet beyannamesi 26\'sına kadar verilir. Geçici vergi üç ayda bir, yıllık beyannameler mart ve nisan aylarında verilir. Güncel tarihleri bu sayfadaki vergi takviminden görebilirsiniz.'],
+    ['Mali müşavirlik ücreti nasıl belirlenir?', 'Ücretler, TÜRMOB tarafından her yıl yayımlanan asgari ücret tarifesi esas alınarak işletmenin türüne ve iş hacmine göre belirlenir ve yazılı sözleşmeyle kayıt altına alınır.']
+  ];
+  $('faq').innerHTML = faq.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join('');
+
+  /* ===== menü ===== */
+  const burger = $('burger'), menu = $('menu');
+  burger.addEventListener('click', () => { const open = menu.classList.toggle('open'); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç'); });
+  menu.addEventListener('click', e => { if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.setAttribute('aria-expanded', false); } });
+  const links = [...menu.querySelectorAll('a')];
+  const secObs = new IntersectionObserver(en => en.forEach(x => { if (x.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + x.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
+  ['hakkimda', 'hizmetler', 'hesaplama', 'takvim', 'mevzuat', 'sss', 'iletisim'].forEach(id => secObs.observe($(id)));
+
+  /* ===== iletişim formu ===== */
+  const f = $('form'), err = $('err'), wa = $('sendWa'), mail = $('sendMail');
+  const build = () => {
+    const ad = f.ad.value.trim(), tel = f.tel.value.trim(), konu = f.konu.value, msg = f.mesaj.value.trim();
+    const text = `Merhaba, ben ${ad || '-'}.${tel ? ' Telefon: ' + tel + '.' : ''}\nKonu: ${konu}\n\n${msg}`;
+    wa.href = 'https://wa.me/905551234567?text=' + encodeURIComponent(text);
+    mail.href = 'mailto:iletisim@ornek.com?subject=' + encodeURIComponent('Web sitesi: ' + konu) + '&body=' + encodeURIComponent(text);
+    return ad && msg;
+  };
+  f.addEventListener('input', () => { build(); err.textContent = ''; });
+  [wa, mail].forEach(a => a.addEventListener('click', e => { if (!build()) { e.preventDefault(); err.textContent = 'Lütfen adınızı ve mesajınızı yazın.'; (f.ad.value.trim() ? f.mesaj : f.ad).focus(); } }));
+  f.addEventListener('submit', e => e.preventDefault());
+  build();
+
+  $('yil').textContent = today.getFullYear();
+}
+</script>
+</body>
+</html>
